@@ -1,10 +1,10 @@
 import { Reducer } from 'redux';
-import { Command, CommandCreator, EmptyCommandCreator } from 'command-bus';
-export declare type AnyCommandCreator<T = undefined> = CommandCreator<T> | EmptyCommandCreator;
+import { Command, AnyCommandCreator } from 'command-bus';
 export declare type Patch<S, A> = (state: S, aciton: Command<A>) => S;
-export interface ReducerMap<S> {
+export declare type ReducerMap<S> = {
     [key: string]: Reducer<S>;
-}
+};
+export declare type PatchTarget<T> = AnyCommandCreator<T> | AnyCommandCreator<T>[];
 export declare type InitialStateFactory<S> = () => S;
-export declare function caseOf<S, A>(commandCreator: AnyCommandCreator<A> | AnyCommandCreator<A>[], patch: Patch<S, A>): ReducerMap<S>;
+export declare function caseOf<S, A>(target: PatchTarget<A>, patch: Patch<S, A>): ReducerMap<S>;
 export declare function createReducer<S>(init: InitialStateFactory<S>): (...patchMaps: ReducerMap<S>[]) => Reducer<S>;
