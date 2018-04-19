@@ -23,22 +23,18 @@
   },
   "homepage": "https://github.com/cotttpan/typed-reducer",
   "dependencies": {},
-  "peerDependencies": {
-    "command-bus": "https://github.com/cotttpan/command-bus",
-    "redux": "^3.7.2"
-  },
   "devDependencies": {
     "@cotto/tslint-config": "^0.1.4",
-    "@types/jest": "^22.2.2",
-    "@types/sinon": "^4.3.0",
+    "@types/jest": "^22.2.3",
+    "@types/sinon": "^4.3.1",
     "command-bus": "https://github.com/cotttpan/command-bus",
     "jest": "^22.4.3",
     "np": "^2.20.1",
     "npm-run-all": "^4.1.2",
-    "redux": "^3.7.2",
+    "redux": "^4.0.0",
     "rimraf": "^2.6.2",
-    "sinon": "^4.4.10",
-    "ts-jest": "^22.4.2",
+    "sinon": "^4.5.0",
+    "ts-jest": "^22.4.4",
     "tslint": "^5.9.1",
     "typescript": "^2.8.1"
   },
