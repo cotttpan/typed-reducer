@@ -12,11 +12,10 @@ function caseOf(target, patch) {
 }
 exports.caseOf = caseOf;
 function createReducer(init) {
-    return (...patchMaps) => {
-        const initialState = init();
-        const patchMap = Object.assign({}, ...patchMaps);
-        return (state = initialState, action) => {
-            const patch = patchMap[action.type];
+    return (...maps) => {
+        const map = Object.assign({}, ...maps);
+        return (state = init(), action) => {
+            const patch = map[action.type];
             return patch ? patch(state, action) : state;
         };
     };
