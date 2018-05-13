@@ -1,10 +1,9 @@
 import { Reducer, AnyAction } from 'redux'
 import { Command, AnyCommandCreator } from 'command-bus'
 
-export type Patch<S, A> = (state: S, aciton: Command<A>) => S
+export type Patch<S, A> = Reducer<S, Command<A>>
 export type ReducerMap<S> = { [key: string]: Reducer<S> }
 export type PatchTarget<T> = AnyCommandCreator<T> | AnyCommandCreator<T>[]
-export type InitialStateFactory<S> = () => S
 
 function ensureArray<T>(src: T | T[]) {
   return Array.isArray(src) ? src : [src]
@@ -18,12 +17,11 @@ export function caseOf<S, A>(target: PatchTarget<A>, patch: Patch<S, A>) {
   return reducerMap
 }
 
-export function createReducer<S>(init: InitialStateFactory<S>) {
-  return (...patchMaps: ReducerMap<S>[]): Reducer<S> => {
-    const initialState = init()
-    const patchMap: ReducerMap<S> = Object.assign({}, ...patchMaps)
-    return (state = initialState, action: AnyAction) => {
-      const patch = patchMap[action.type]
+export function createReducer<S>(init: () => S) {
+  return (...maps: ReducerMap<S>[]): Reducer<S> => {
+    const map: ReducerMap<S> = Object.assign({}, ...maps)
+    return (state = init(), action: AnyAction) => {
+      const patch = map[action.type]
       return patch ? patch(state, action) : state
     }
   }
