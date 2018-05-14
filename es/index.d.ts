@@ -1,6 +1,6 @@
 import { Reducer, AnyAction } from 'redux';
 import { Command, AnyCommandCreator } from 'command-bus';
-export declare type Patch<S, A> = Reducer<S, Command<A>>;
+export declare type Patch<S, A> = (state: S, action: Command<A>) => S;
 export declare type ReducerMap<S> = {
     [key: string]: Reducer<S>;
 };
