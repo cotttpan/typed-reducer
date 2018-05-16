@@ -1,6 +1,7 @@
-import { create } from 'command-bus'
+import { factory } from 'command-bus'
 import { caseOf, createReducer } from './index'
 
+const create = factory('')
 
 test('createReducer with caseOf', () => {
   const INCREMENT = create<number>('INCREMENT')
