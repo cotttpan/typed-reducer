@@ -13,10 +13,12 @@ test('createReducer with caseOf', () => {
   const reducer = createReducer(init)(
     caseOf(
       [INCREMENT, RE_INCREMENT],
-      (state, action) => ({ ...state, count: state.count + action.payload })),
+      (state, action) => ({ count: state.count + action.payload }),
+    ),
     caseOf(
       DECREMENT,
-      (state, action) => ({ ...state, count: state.count - action.payload })),
+      (state, action) => ({ count: state.count - action.payload }),
+    ),
   )
 
   expect(reducer(undefined, INCREMENT(1))).toEqual({ count: 1 })
