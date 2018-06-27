@@ -1,7 +1,7 @@
 import { Reducer, AnyAction } from 'redux';
-import { AnyCommand, AnyCommandCreator } from 'command-bus';
+import { Command, AnyCommandCreator } from 'command-bus';
 export declare type ReturnTypeOnArrayFuncs<T> = T extends ((...val: any[]) => infer R)[] ? R : never;
-export declare type PatchFunc<S, T extends AnyCommand> = (state: S, command: T) => S;
+export declare type PatchFunc<S, T extends Command> = (state: S, command: T) => S;
 export declare type ReducerMap<S> = {
     [key: string]: Reducer<S>;
 };
